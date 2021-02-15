@@ -4,6 +4,7 @@ export default function App() {
   const [note, setNote] = useState("");
   const [passone, setPassone] = useState("");
   const [passtwo, setPasstwo] = useState("");
+  const [dvalue, setDvalue] = useState(true);
   function passoneHandler(e) {
     setPassone(e.target.value);
   }
@@ -12,6 +13,7 @@ export default function App() {
   }
   function validatePassword() {
     if (passone === passtwo) {
+      setDvalue(false);
       setNote("Password matched!");
     } else {
       setNote("Password didn't matched!");
@@ -25,7 +27,9 @@ export default function App() {
       <label>Enter Password Again : </label>
       <input type="text" onChange={passtwoHandler} />
       <br />
-      <button onClick={validatePassword}>Check</button>
+      <button onClick={validatePassword} disabled={dvalue}>
+        Check
+      </button>
       <h3>{note}</h3>
     </div>
   );
